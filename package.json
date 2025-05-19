@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "npx eslint ./src/**/*.mjs && node index.mjs ",
+    "dev": "node index.mjs",
     "prod": "node index.mjs production",
     "lint": "npx eslint ./src/**/*.mjs"
   },
@@ -20,7 +20,7 @@
     "mongoose": "^7.2.4"
   },
   "devDependencies": {
-    "eslint": "^8.42.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5"
   }
