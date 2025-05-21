@@ -1,15 +1,16 @@
 import PhotoModel from '../models/photo.mjs';
 
 const Photos = class Photos {
-  constructor(app, connect) {
+  constructor(app, connect, jwtMiddleware) {
     this.app = app;
     this.PhotoModel = connect.model('Photo', PhotoModel);
+    this.jwtMiddleware = jwtMiddleware;
 
     this.run();
   }
 
   showFromAlbum() {
-    this.app.get('/album/:idAlbum/photo/:idPhoto', async (req, res) => {
+    this.app.get('/album/:idAlbum/photo/:idPhoto', this.jwtMiddleware, async (req, res) => {
       try {
         const { idAlbum, idPhoto } = req.params;
   
@@ -32,7 +33,7 @@ const Photos = class Photos {
   
   
   createInAlbum() {
-    this.app.post('/album/:albumId/photo', async (req, res) => {
+    this.app.post('/album/:albumId/photo', this.jwtMiddleware, async (req, res) => {
       try {
         const albumId = req.params.albumId;
   
@@ -59,7 +60,7 @@ const Photos = class Photos {
   }
 
   deleteFromAlbum() {
-    this.app.delete('/album/:albumId/photo/:photoId', async (req, res) => {
+    this.app.delete('/album/:albumId/photo/:photoId', this.jwtMiddleware, async (req, res) => {
       try {
         const { albumId, photoId } = req.params;
   
@@ -87,7 +88,7 @@ const Photos = class Photos {
   }
   
   updateInAlbum() {
-    this.app.put('/album/:idAlbum/photo/:idPhoto', async (req, res) => {
+    this.app.put('/album/:idAlbum/photo/:idPhoto', this.jwtMiddleware, async (req, res) => {
       try {
         const { idAlbum, idPhoto } = req.params;
   
