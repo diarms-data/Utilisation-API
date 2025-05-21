@@ -101,7 +101,7 @@ const Server = class Server {
     new routes.Photos(this.app, this.connect, this.jwtMiddleware);
     new routes.Albums(this.app, this.connect, this.jwtMiddleware);
     new routes.Auth(this.app);
-    new Pipeline(this.app);
+    new routes.Pipeline(this.app);
 
     this.app.use((req, res) => {
       res.status(404).json({
